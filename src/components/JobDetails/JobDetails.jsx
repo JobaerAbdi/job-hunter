@@ -1,29 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import addToDb from '../../Utilities/fakeDB';
 
 const JobDetails = () => {
+    const [job, setJob] = useState({})
+    const jobData = useLoaderData();
     const {pid} = useParams();
-    const load = useLoaderData();
 
-    const findData = load.find(fd => +fd.id === +pid);
-    console.log(findData);
+    useEffect(()=>{
+        const findData = jobData.find(fd => +fd.id === +pid);
+        if(findData){
+            setJob(findData)
+        }
+    },[jobData, pid])
 
-    const {description,responsibility,background,experience,salary,jobTitle,Phone,mail} = findData;
+    const handleAddToDb = (id)=>{
+        addToDb(id)
+    };
+
+    const {id,description,responsibility,background,experience,salary,jobTitle,Phone,mail} = job;
+   
     return (
-        <div className='flex'>
-            <div>
-                <h1>Job Description : {description}</h1>
-                <h1>Job Responsibility : {responsibility}</h1>
-                <h1>Educational Requirements : {background}</h1>
-                <h1>Experiences : {experience}</h1>
-            </div>
-            <div>
-                <h1>{salary}</h1>
-                <h1>{jobTitle}</h1>
-                <h1>{Phone}</h1>
-                <h1>{mail}</h1>
-            </div>
+        <div>
+            <h1 className='text-2xl font-bold text-center py-20 bg-slate-200'>Job Details</h1>
+            <div className='flex lg:px-12 mt-16'>
+                <div className='w-4/5 h-96'>
+                    <h1><span className='font-bold'>Job Description :</span>  {description}</h1>
+                    <h1 className='my-6'><span className='font-bold'>Job Responsibility :</span> {responsibility}</h1>
+                    <h1><span className='font-bold'>Educational Requirements :</span> {background}</h1>
+                    <h1 className='mt-6'><span className='font-bold'>Experiences :</span> {experience}</h1>
+                </div>
+                <div className='w-1/5 h-96 bg-purple-100 rounded-lg p-6 '>
+                    <h1 className='font-bold mb-5'>Job Details :</h1>
+                    <h1><span className='font-bold'>Salary : </span>{salary}</h1>
+                    <h1><span className='font-bold'>Job Title : </span>{jobTitle}</h1>
+                    <h1 className='font-bold my-5'>Contact Information :</h1>
+                    <h1><span className='font-bold'>Phone : </span>{Phone}</h1>
+                    <h1 className='mb-16'><span className='font-bold'>Email : </span>{mail}</h1>
+                    <button onClick={()=>handleAddToDb(id)} className="btn btn-info w-full">Apply Now</button>
+                </div>
 
+            </div>
         </div>
     );
 };

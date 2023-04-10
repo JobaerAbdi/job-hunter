@@ -35,7 +35,7 @@ const Home = () => {
             <div className='mt-16 lg:px-12'>
                 <div className='text-center mb-12'>
                     <h1 className='text-3xl font-bold mb-3'>Job Category List</h1>
-                    <p className='font-semibold'>Explore thousands of job opportunities with all the information you need. Its your future</p>
+                    <p className='font-semibold'>Different type of job opportunities with all the information you need.</p>
                 </div>
                 <div className='grid sm:grid-cols-1 lg:grid-cols-4 gap-8'>
                     {
@@ -45,7 +45,11 @@ const Home = () => {
                             ></JobCategory>)
                     }
                 </div>
-                <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-16 mt-28'>
+                <div className='text-center mt-24'>
+                    <h1 className='text-3xl font-bold mb-3'>Featured Job</h1>
+                    <p className='font-semibold'>Explore thousands of job opportunities with all the information you need. Its your future...</p>
+                </div>
+                <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-12 mt-12'>
                     {
                             allJobs.map(job=><AllJobs
                                 key={job.id}
