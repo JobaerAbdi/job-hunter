@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import JobCategory from '../JobCategory/JobCategory';
+
+
 
 const Home = () => {
+    const [jobs,setJobs] = useState([])
+    //console.log(jobs);
+
+    useEffect(()=>{
+        fetch('category.json')
+        .then(res=>res.json())
+        .then(data=>setJobs(data));
+    },[])
+
     return (
         <div>
             <div className='flex flex-col lg:flex-row justify-between bg-red-50 lg:px-12 pt-8'>
@@ -11,6 +23,20 @@ const Home = () => {
                 </div>
                 <div className='sm:w-full lg:w-1/2 flex justify-end'>
                     <img className='rounded-lg h-96 w-96' src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" alt="" />
+                </div>
+            </div>
+            <div className='mt-16 lg:px-12'>
+                <div className='text-center mb-12'>
+                    <h1 className='text-3xl font-bold mb-3'>Job Category List</h1>
+                    <p className='font-semibold'>Explore thousands of job opportunities with all the information you need. Its your future</p>
+                </div>
+                <div className='grid sm:grid-cols-1 lg:grid-cols-4 gap-8'>
+                    {
+                            jobs.map(job=><JobCategory
+                            key={job.id}
+                            job={job}
+                            ></JobCategory>)
+                    }
                 </div>
             </div>
         </div>

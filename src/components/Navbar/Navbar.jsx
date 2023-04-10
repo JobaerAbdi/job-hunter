@@ -98,7 +98,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Apply Now</a>
+          <a className="btn">Start Applying</a>
         </div>
       </div>
     </div>
