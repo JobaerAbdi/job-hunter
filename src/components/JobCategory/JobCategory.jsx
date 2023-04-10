@@ -5,7 +5,7 @@ const JobCategory = ({ job }) => {
   const { name, logo, availableJob } = job;
   return (
     <div>
-      <div className="card card-compact w-full bg-base-100 shadow-2xl">
+      <div className="card card-compact w-full bg-base-100 shadow-2xl bg-slate-100 p-5">
         <div className="ml-10">
           <img className="w-16 rounded-md" src={logo} alt="Job" />
         </div>

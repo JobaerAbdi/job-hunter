@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import JobCategory from '../JobCategory/JobCategory';
+import AllJobs from '../AllJobs/AllJobs';
 
 
 
 const Home = () => {
     const [jobs,setJobs] = useState([])
-    //console.log(jobs);
+    const [allJobs,setAllJobs] = useState([])
 
     useEffect(()=>{
         fetch('category.json')
         .then(res=>res.json())
         .then(data=>setJobs(data));
+    },[])
+
+    useEffect(()=>{
+        fetch('featuredJobs.json')
+        .then(res=>res.json())
+        .then(data=>setAllJobs(data));
     },[])
 
     return (
@@ -36,6 +43,14 @@ const Home = () => {
                             key={job.id}
                             job={job}
                             ></JobCategory>)
+                    }
+                </div>
+                <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-16 mt-28'>
+                    {
+                            allJobs.map(job=><AllJobs
+                                key={job.id}
+                                job={job}
+                            ></AllJobs>)
                     }
                 </div>
             </div>
