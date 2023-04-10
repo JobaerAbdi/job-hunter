@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
-import addToDb from '../../Utilities/fakeDB';
 
 const JobDetails = () => {
     const [job, setJob] = useState({})
@@ -15,8 +14,23 @@ const JobDetails = () => {
     },[jobData, pid])
 
     const handleAddToDb = (id)=>{
-        addToDb(id)
+        let shoppingCart = {}
+  
+        const storedCart = localStorage.getItem('apply-job')
+        if (storedCart) {
+          shoppingCart = JSON.parse(storedCart)
+        }
+      
+        const quantity = shoppingCart[id]
+        if (quantity) {
+          const newQuantity = quantity + 1
+          shoppingCart[id] = newQuantity
+        } else {
+          shoppingCart[id] = 1
+        }
+        localStorage.setItem('apply-job', JSON.stringify(shoppingCart));
     };
+
 
     const {id,description,responsibility,background,experience,salary,jobTitle,Phone,mail} = job;
    
