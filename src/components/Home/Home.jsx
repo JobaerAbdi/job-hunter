@@ -18,6 +18,8 @@ const Home = () => {
         .then(data=>setAllJobs(data));
     },[])
 
+    const [toggle, setToggle] = useState(false);
+
     return (
         <div>
             <div className='flex flex-col lg:flex-row justify-between bg-red-50 lg:px-12 pt-8'>
@@ -49,12 +51,15 @@ const Home = () => {
                 </div>
                 <div className='grid sm:grid-cols-1 lg:grid-cols-2 gap-12 mt-12'>
                     {
-                            allJobs.map(job=><AllJobs
+                            allJobs.slice( 0, toggle  ? toggle.length :  4 ).map(job=><AllJobs
                                 key={job.id}
                                 job={job}
                             ></AllJobs>)
                     }
                 </div>
+                <div className='text-center mt-5'>
+                   <button onClick={() => setToggle(!toggle)} className="btn btn-info">{toggle ? 'see less' : 'see more'}</button>
+                 </div>
             </div>
         </div>
     );
@@ -62,4 +67,3 @@ const Home = () => {
 
 export default Home;
 
-//<div className='grid sm:grid-cols-1 lg:grid-cols-2 lg:px-12 mt-8'>
