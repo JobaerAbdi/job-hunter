@@ -57,7 +57,7 @@ const Home = () => {
                             ></AllJobs>)
                     }
                 </div>
-                <div className='text-center mt-5'>
+                <div className='text-center my-8'>
                    <button onClick={() => setToggle(!toggle)} className="btn btn-info">{toggle ? 'see less' : 'see more'}</button>
                  </div>
             </div>
