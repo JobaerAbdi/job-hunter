@@ -1,29 +1,33 @@
-/* import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React from 'react';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'; 
+
 const Statistics = () => {
 
     const assignmentMarks = [
-        {no: 1, name: 'assignment01', mark : 60},
-        {no: 2, name: 'assignment02', mark : 60},
-        {no: 3, name: 'assignment03', mark : 56},
-        {no: 4, name: 'assignment04', mark : 60},
-        {no: 5, name: 'assignment05', mark : 59},
-        {no: 6, name: 'assignment06', mark : 60},
-        {no: 7, name: 'assignment07', mark : 60},
-        {no: 8, name: 'assignment08', mark : 60},
-    ];
+        {no: 1, name: 'Assignment01', Mark : 60},
+        {no: 2, name: 'Assignment02', Mark : 60},
+        {no: 3, name: 'Assignment03', Mark : 56},
+        {no: 4, name: 'Assignment04', Mark : 60},
+        {no: 5, name: 'Assignment05', Mark : 59},
+        {no: 6, name: 'Assignment06', Mark : 60},
+        {no: 7, name: 'Assignment07', Mark : 60},
+        {no: 8, name: 'Assignment08', Mark : 60},
+    ]; 
 
     return (
-        <div>
-            <LineChart
-                width={500}
-                height={300}
+        <div className='mt-20 ml-20'>
+            <AreaChart
+                width={1300}
+                height={500}
                 data={assignmentMarks}
             >
-                <Line dataKey="mark"></Line>
-            </LineChart>
+                <Area type="monotone" stroke="##8884d8" fill="#82ca9d" dataKey="Mark"></Area>
+                <XAxis dataKey="name"></XAxis>
+                <YAxis></YAxis>
+                <Tooltip></Tooltip>
+            </AreaChart>
         </div>
     );
 };
 
-export default Statistics; */
+export default Statistics; 

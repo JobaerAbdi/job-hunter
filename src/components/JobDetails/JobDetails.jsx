@@ -14,21 +14,21 @@ const JobDetails = () => {
     },[jobData, pid])
 
     const handleAddToDb = (id)=>{
-        let shoppingCart = {}
+        let jobData = {}
   
-        const storedCart = localStorage.getItem('apply-job')
-        if (storedCart) {
-          shoppingCart = JSON.parse(storedCart)
+        const storedData = localStorage.getItem('apply-job')
+        if (storedData) {
+          jobData = JSON.parse(storedData)
         }
       
-        const quantity = shoppingCart[id]
+        const quantity = jobData[id]
         if (quantity) {
           const newQuantity = quantity + 1
-          shoppingCart[id] = newQuantity
+          jobData[id] = newQuantity
         } else {
-          shoppingCart[id] = 1
+          jobData[id] = 1
         }
-        localStorage.setItem('apply-job', JSON.stringify(shoppingCart));
+        localStorage.setItem('apply-job', JSON.stringify(jobData));
     };
 
 
