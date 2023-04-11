@@ -1,35 +1,38 @@
 import React, { useEffect, useState } from 'react';
+import AppliedDetailsJob from '../AppliedDetailsJob/AppliedDetailsJob';
 
 const AppliedJobs = () => {
-    const [data, setData] = useState([]);
-    const [cart, setCart] = useState([]);
+    const [allJobs, setAllJobs] = useState([]);
+
     useEffect(()=>{
         fetch('featuredJobs.json')
         .then(res=>res.json())
-        .then(data=>setData(data));
-    },[setData])
+        .then(data=>setAllJobs(data));
+    },[setAllJobs])
 
-    useEffect(()=>{
-        let jobData = {};
-        const storedData = localStorage.getItem('apply-job')
-        if (storedData) {
-          jobData = JSON.parse(storedData)
-        };
-        let newArr = [];
-        for(const id in jobData){
-            const foundJob = data.find(singleData=> singleData.id === id);
-            if(foundJob){
-                foundJob.quantity = jobData[id];
-                newArr.push(foundJob)
-            }
+    let jobData = {};
+    const storedData = localStorage.getItem('apply-job')
+    if (storedData) {
+      jobData = JSON.parse(storedData)
+    };
+
+    const appliedJobs = [];
+    for(const id in jobData){
+        const foundJob = allJobs.find(jobs=> jobs.id === id);
+        if(foundJob){
+            appliedJobs.push(foundJob)
         }
-        setCart(newArr);
-    },[])
-    console.log(cart);
+    };
+
     
     return (
         <div>
-            <h1>aaaaaaaaaaaaaaa</h1>
+            {
+                appliedJobs.map(job=><AppliedDetailsJob
+                key={job.id}
+                job={job}
+                ></AppliedDetailsJob>)
+            }
         </div>
     );
 };

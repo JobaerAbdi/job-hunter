@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import JobCategory from '../JobCategory/JobCategory';
 import AllJobs from '../AllJobs/AllJobs';
 
-
-
 const Home = () => {
     const [jobs,setJobs] = useState([])
     const [allJobs,setAllJobs] = useState([])
